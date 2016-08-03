@@ -50,8 +50,6 @@ system_info:
     groups: [wheel, adm, systemd-journal]
     sudo: ["ALL=(ALL) NOPASSWD:ALL"]
     shell: /bin/bash
-    ssh_authorized_keys:
-     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCUwKWFOlicVtYha09f6tkf6j8yRmAxXUP0Rt4f6/tQi8n5cLAJA2ml9PK9PIOBiqhNHyhfJKPJYh9BSPwrUnkvef0bKSacgD6vkqGj89Bmwm2BmMZK374HmAr+O0n8ly5QRsSDx/7+altxoN8fqXxG8y063H98jyNRnWyy9qZ38UTM2TZaQHW4P4PClCffooQ5aZrl7bbrqZsPCEJfIZkOhsy78W147P2RTVkob9QCjTw+tEZT6VUKWEahoCvefeBHcMCmerlqVbvC8IrunxYFsJp5CxNvbH1laMVztDhhv39REYXbdhm9krh63ktBvCZle1bnfrrwIF92jJLnDMPN
   distro: rhel
   paths:
     cloud_dir: /var/lib/cloud
