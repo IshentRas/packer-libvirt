@@ -15,7 +15,7 @@ ssh_pwauth:   0
 locale_configfile: /etc/sysconfig/i18n
 mount_default_fields: [~, ~, 'auto', 'defaults,nofail', '0', '2']
 resize_rootfs_tmp: /dev
-ssh_deletekeys:   0
+ssh_deletekeys:   1
 ssh_genkeytypes:  ~
 syslog_fix_perms: ~
 cloud_init_modules:
