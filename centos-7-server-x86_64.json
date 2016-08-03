@@ -1,0 +1,54 @@
+{
+  "variables": {
+    "name":                 "centos-7-server-x86_64",
+    "user":                 "packer",
+    "password":             "packer",
+    "size":                 "8000",
+    "mirror":               "http://mirror.karneval.cz/pub/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
+    "md5sum":               "99d305fa40ec9e28ef8450c3bcc45f85"
+  },
+
+  "builders": [
+    {
+      "name":               "{{user `name`}}",
+      "type":               "qemu",
+      "format":             "qcow2",
+      "disk_compression":   true,
+      "accelerator":        "kvm",
+      "net_device":         "virtio-net",
+      "output_directory":   "output/centos-7-x86_64-qemu/",
+      "qemuargs": [
+          [ "-m", "1024M" ]
+      ],
+      "disk_size":          "{{user `size`}}",
+      "disk_interface":     "virtio",
+
+      "iso_url":            "{{user `mirror`}}",
+      "iso_checksum":       "{{user `md5sum`}}",
+      "iso_checksum_type":  "md5",
+
+      "http_directory":     "data",
+
+      "ssh_username":       "{{user `user`}}",
+      "ssh_password":       "{{user `password`}}",
+      "ssh_port":           22,
+      "ssh_wait_timeout":   "30m",
+      "shutdown_command":   "echo '{{user `password`}}' | sudo -S shutdown -P now",
+      "boot_wait": "2s",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `name`}}-ks.cfg<enter><wait>"
+      ]
+    }
+  ],
+
+  "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "echo '{{user `password`}}' | {{ .Vars }} sudo -S -E sh {{ .Path }}",
+            "scripts": [
+                "scripts/cloud-init.sh",                
+                "scripts/cleanup.sh"
+            ]
+        }
+  ]
+}
