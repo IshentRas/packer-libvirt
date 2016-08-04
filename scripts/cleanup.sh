@@ -18,9 +18,6 @@ echo "* Remove ssh client directories"
 rm -rf /home/*/.ssh
 rm -rf /root/.ssh
 
-echo "* Remove ssh server keys"
-rm -rf /etc/ssh/*_host_*
-
 echo "* Remove the PAM data"
 rm -rf /var/run/console/*
 rm -rf /var/run/faillock/*
@@ -80,9 +77,6 @@ rm -f /var/lib/yum/uuid
 
 echo "* Remove YUM cache"
 find /var/cache/yum/ -type f -exec rm -f {} \;
-
-echo "* Installed packages:"
-rpm -qa
 
 sleep 10
 
